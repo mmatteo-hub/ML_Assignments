@@ -1,0 +1,26 @@
+#Outlook   Temperature  Humidity  Windy  Play
+overcast   hot          high      FALSE  yes
+overcast   cool         normal    TRUE   yes
+overcast   mild         high      TRUE   yes
+overcast   hot          normal    FALSE  yes
+rainy      mild         high      FALSE  yes
+rainy      cool         normal    FALSE  yes
+rainy      cool         normal    TRUE   no
+rainy      mild         normal    FALSE  yes
+rainy      mild         high      TRUE   no
+sunny      hot          high      FALSE  no
+sunny      hot          high      TRUE   no
+sunny      mild         high      FALSE  no
+sunny      cool         normal    FALSE  yes
+sunny      mild         normal    TRUE   yes
+
+
+#Outlook legend		#Humidity legend		#Play legend	
+Sunny = 3		High = 2			No = 1
+Overcast = 2		Normal = 1		Yes = 2
+Rainy = 1
+
+#Temperature legend	#Windy legend
+Hot = 3			False = 1
+Mild = 2			True = 2
+Cool = 1
