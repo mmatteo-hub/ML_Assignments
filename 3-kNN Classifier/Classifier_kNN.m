@@ -6,46 +6,50 @@ addpath('./mnist');
 %% Load data
 [X_train, T_train] = loadMNIST(0,0:9);
 [X_test, T_test] = loadMNIST(1,0:9);
-K = 1;
-
-[target, error_rate] = kNN(X_train(1:600,:),T_train(1:600,:),X_test(1:20,:),K,T_test(1:20,:));
 
 %% Testing the classifier for differnt Ks
 K_array = [1,2,3,4,5,10,15,20,30,40,50];
+accuracy = zeros(10,length(K_array));
 
-row_tr = 2000;
-row_ts = 150;
-
-err_matrix = zeros(10,length(K_array));
-for i=1:length(K_array)
-    for v=1:10
-        if(v == 10)
-            [X_t,T_t] = loadMNIST(1,0);
-            [target_f, err_matrix(v,i)] = kNN(X_train(1:row_tr,:),T_train(1:row_tr,:),X_t(1:row_ts,:),K_array(i),T_t(1:row_ts,:));
-        else
-            [X_t,T_t] = loadMNIST(1,v+1);
-            [target_f, err_matrix(v,i)] = kNN(X_train(1:row_tr,:),T_train(1:row_tr,:),X_t(1:row_ts,:),K_array(i),T_t(1:row_ts,:));
+for cl=1:10
+    T_train_cl = double(T_train == cl);
+    T_test_cl = double(T_test == cl);
+    
+    % take 5% of the data set
+    rows = randperm(60000,floor(0.025*60000));
+    X_train_sub = X_train(rows,:);
+    T_train_sub = T_train(rows,:);
+    
+    % take 10% of the data set
+    rows = randperm(10000,floor(0.10*10000));
+    X_test_sub = X_test(rows,:);
+    T_test_sub = T_test(rows,:);
+    
+    
+    for i=1:length(K_array)
+        for j=1:length(K_array)
+            [target, err_matrix] = kNN(X_train_sub,T_train_sub,X_test_sub,K_array(j),T_test_sub);
+            accuracy(cl,i) = 1-err_matrix;
         end
     end
 end
 
 figure;
-for i=1:length(err_matrix(1,:))
-    hold on;
-    subplot(1,length(K_array),i);
-    bar(err_matrix(:,i));
-end
+hold on;
+plot(K_array,accuracy(10,:),'DisplayName','Class 0', 'LineWidth', 2);
+plot(K_array,accuracy(1,:),'DisplayName','Class 1', 'LineWidth', 2);
+plot(K_array,accuracy(2,:),'DisplayName','Class 2', 'LineWidth', 2);
+plot(K_array,accuracy(3,:),'DisplayName','Class 3', 'LineWidth', 2);
+plot(K_array,accuracy(4,:),'DisplayName','Class 4', 'LineWidth', 2);
+plot(K_array,accuracy(5,:),'DisplayName','Class 5', 'LineWidth', 2);
+plot(K_array,accuracy(6,:),'DisplayName','Class 6', 'LineWidth', 2);
+plot(K_array,accuracy(7,:),'DisplayName','Class 7', 'LineWidth', 2);
+plot(K_array,accuracy(8,:),'DisplayName','Class 8', 'LineWidth', 2);
+plot(K_array,accuracy(9,:),'DisplayName','Class 9', 'LineWidth', 2);
+title('Accuracy');
+xlabel('K');
+ylabel('Accuracy in percentage');
+grid;
 
-accuracy = 1-err_matrix;
-figure;
-for i=1:length(accuracy(:,1))
-    hold on;
-    %figure(i)
-    plot(K_array, accuracy(i,:),'LineWidth',2);
-    axis([min(K_array), max(K_array),.5,1]);
-    title('Accuracy for kNN classifer')
-    xlabel('K classes');
-    ylabel('Accuracy');
-    legend('Class 0','Class 1','Class 2','Class 3','Class 4','Class 5','Class 6','Class 7','Class 8','Class 9');
-    grid
-end
+lgd = legend;
+
