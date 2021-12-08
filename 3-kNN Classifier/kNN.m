@@ -19,21 +19,21 @@ end
 if t
     if n == n1 && m == m1 && d == d1 && c == c1 && c == 1
     else
-        disp("Incorrect number of column or rows");
+        disp("Incorrect col num");
         return
     end
 else
     if n == n1 && d == d1 && c == 1
     else
-        disp("Incorrect number of column or rows");
+        disp("Incorrect row um");
         return
     end
 end
 
 if k <= 0
-    disp("Invalid k, must be k > 0");
+    disp("Invalid k");
 elseif k > n
-    disp("Invalid k, bigger than dataset");
+    disp("Invalid k too big");
 end
 
 %% Train
