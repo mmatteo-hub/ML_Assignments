@@ -15,13 +15,13 @@ for cl=1:10
     T_train_cl = double(T_train == cl);
     T_test_cl = double(T_test == cl);
     
-    % take % of the data set
-    rows = randperm(60000,floor(0.01*60000));
+    % take 5% of the data set
+    rows = randperm(60000,floor(0.05*60000));
     X_train_sub = X_train(rows,:);
     T_train_sub = T_train(rows,:);
-    
-    % take % of the data set
-    rows = randperm(10000,floor(0.05*10000));
+   
+    % take 15% of the data set
+    rows = randperm(10000,floor(0.15*10000));
     X_test_sub = X_test(rows,:);
     T_test_sub = T_test(rows,:);
     
@@ -47,3 +47,10 @@ legend('Class 0','Class 1','Class 2','Class 3','Class 4','Class 5','Class 6','Cl
 grid;
 
 lgd = legend;
+
+figure;
+bar(1-accuracy);
+title('Error computed for each class, on x axis, for each number of neighbours required (each set)');
+xlabel('Classes');
+ylabel('Error');
+legend('Class 1','Class 2','Class 3','Class 4','Class 5','Class 6','Class 7','Class 8','Class 9','Class 10');

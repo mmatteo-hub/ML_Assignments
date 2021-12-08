@@ -42,18 +42,18 @@ for i = 1:m
     labels = zeros(k,1);
     distances = zeros(n,1);
     for j = 1:n
-        distances(j,1) = norm(X_train(j,:)- X_test(i,:));
+        distances(j) = norm(X_train(j,:)- X_test(i,:));
     end
     [~, indexes] = mink(distances,k);
     for h = 1:k
-        labels(h,1) = T_train(indexes(h,1), 1);
+        labels(h) = T_train(indexes(h));
     end
-    target(i,1) = mode(labels,1);
+    target(i) = mode(labels);
 end
 error_rate = 0;
 if t
    for l = 1:m
-       if target(l,1) ~= T_test(l,1)
+       if target(l) ~= T_test(l)
            error_rate = error_rate + 1/m;
        end
    end
