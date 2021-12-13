@@ -1,0 +1,15 @@
+dist2
+-----
+
+plotcl(X,t)
+X (n x d)
+t (n x 1)
+plots the data in X as in plotdata(X) but with different colors and styles according to the label t
+(i.e., X(i,:) is plotted with a style defined by t(i)).
+labels must be consecutive integer numbers starting at 1
+(actually if they are not consecutive it works anyway, you just waste some of the available styles)
+
+plotcl(X,t,coord)
+coord a vector of 1 to 3 column indexes
+Specify this third argument if you donàt want to plot the first columns.
+

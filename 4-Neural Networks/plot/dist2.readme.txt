@@ -1,0 +1,13 @@
+dist2
+-----
+
+dist2(X)
+X (n x d)
+returns the (n x n) matrix of distances from all rows to all rows.
+
+dist2(X,Y)
+X (n1 x d)
+Y (n2 x d)
+returns the (n1 x n2) matrix of distances from all rows of X to all rows of Y.
+
+NOTE: distances = squared Euclidean distances - If x and y are vectors, this is sum((x-y).^2)

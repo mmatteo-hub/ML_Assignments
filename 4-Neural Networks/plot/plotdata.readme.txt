@@ -1,0 +1,15 @@
+plotdata
+--------
+
+plotdata(X)
+X (n x d)
+if d=1, plots the data in 2d along the diagonal (so effectively in 1d)
+if d=2, plots the data in 2d as in "plot(X(:,1),X(:,2),'xb')"
+if d>=3, plots the data in 3d using the first 3 cols
+If you want to plot columns that are not the first ones, just select them
+when passing the argument: "plotdata(X(:,[1 3]))"
+
+plotdata(X,f)
+f a character array (a string)
+f is used to specify a style, e.g., "plotdata(X,'xr')"
+
