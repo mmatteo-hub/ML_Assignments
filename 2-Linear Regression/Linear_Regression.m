@@ -74,7 +74,7 @@ err_train1 = zeros(len,1);
 for k=1:len
 [subSet1_5,subSet1_95] = setSplit(turkish_se_SP500vsMSCI,percentage2);
 [x,y] = oneDim_noIntercept(subSet1_5);
-w = y\x;
+w = subSet1_5(:,1)\subSet1_5(:,2);
 target1_95 = subSet1_95(:,2);
 y_calc1_95 = w * subSet1_95(:,1);
 err_test1(k) = immse(y_calc1_95,target1_95);
@@ -85,7 +85,7 @@ end
 mse1 = [err_train1 err_test1];
 
 figure
-subplot(1,3,1);
+subplot(3,1,1);
 diag = bar(mse1);
 diag(1).FaceColor = 'g';
 diag(2).FaceColor = 'r';
@@ -110,7 +110,7 @@ err_train3(j) = immse(yn_c,yn);
 end
 mse3 = [err_train3 err_test3];
 
-subplot(1,3,2);
+subplot(3,1,2);
 diag = bar(mse3);
 diag(1).FaceColor = 'g';
 diag(2).FaceColor = 'r';
@@ -134,7 +134,7 @@ err_train4(h) = immse(y4,t4);
 end
 mse4 = [err_train4 err_test4];
 
-subplot(1,3,3);
+subplot(3,1,3);
 diag = bar(mse4);
 diag(1).FaceColor = 'g';
 diag(2).FaceColor = 'r';
