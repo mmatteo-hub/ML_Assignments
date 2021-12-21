@@ -63,7 +63,7 @@ hold on;
 plot(t,y_m,'.','LineWidth',2);
 plot(y_m,y_m,'-','LineWidth',2);
 legend('Approssimation of the diagonal of the square','Diagonal of the square');
-title('Multi variable regression model');
+title('Multi variable regression model',10);
 
 %% Task 3
 %% Point 1, 2 and 4 with 5% of the total as train and 95% as test
