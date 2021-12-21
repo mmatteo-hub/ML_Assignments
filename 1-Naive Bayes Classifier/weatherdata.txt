@@ -16,11 +16,11 @@ sunny      mild         normal    TRUE   yes
 
 
 #Outlook legend		#Humidity legend		#Play legend	
-Sunny = 3		High = 2			No = 1
-Overcast = 2		Normal = 1		Yes = 2
+Sunny = 3		    High = 2			    No = 1
+Overcast = 2		Normal = 1		        Yes = 2
 Rainy = 1
 
 #Temperature legend	#Windy legend
-Hot = 3			False = 1
+Hot = 3			    False = 1
 Mild = 2			True = 2
 Cool = 1

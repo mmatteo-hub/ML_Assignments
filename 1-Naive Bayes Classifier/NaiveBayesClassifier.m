@@ -113,14 +113,14 @@ if(col_test >= col_train - 1)
             if col_test == col_train
                 if(cl == 1)
                     target_no_Lp(1,r) = cl;
-                elseif (g_i(r,cl) < g_i(r,cl-1)) % bring the smallest because we want the minimun error
+                elseif (g_i(r,cl) > g_i(r,cl-1)) % bring the smallest because we want the minimun error
                     target_no_Lp(1,r)=cl;
                 end
             end
             if col_test == col_train
                 if(cl == 1)
                     target_Laplace(1,r) = cl;
-                elseif (g_i_Laplace(r,cl) < g_i_Laplace(r,cl-1)) % bring the smallest because we want the minimun error
+                elseif (g_i_Laplace(r,cl) > g_i_Laplace(r,cl-1)) % bring the smallest because we want the minimun error
                     target_Laplace(1,r)=cl;
                 end
             end
