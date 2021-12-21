@@ -67,7 +67,7 @@ title('Multi variable regression model');
 
 %% Task 3
 %% Point 1, 2 and 4 with 5% of the total as train and 95% as test
-percentage2 = 0.5;
+percentage2 = 0.05;
 len = 10;
 err_test1 = zeros(len,1);
 err_train1 = zeros(len,1);
@@ -87,10 +87,10 @@ mse1 = [err_train1 err_test1];
 figure
 subplot(1,3,1);
 diag = bar(mse1);
-diag(1).FaceColor = 'r';
-diag(2).FaceColor = 'g';
+diag(1).FaceColor = 'g';
+diag(2).FaceColor = 'r';
 ylabel('MSE');
-legend('MSE test set','MSE train set')
+legend('MSE train set','MSE test set')
 title(['MSE comparison between test and train set among ' num2str(len) ' random iterations'])
 
 
@@ -100,22 +100,22 @@ err_train3 = zeros(len,1);
 for j=1:len
 [subSet2_5,subSet2_95] = setSplit(mtcarsdata,percentage2);
 [xn,yn,yn_c] = oneDim_withIntercept(subSet2_5);
-X = [ones(length(xn),1) xn];
-b = X\yn;
-target2_95 = subSet2_95(:,4);
-X2 = [ones(length(subSet2_95(:,1)),1) subSet2_95(:,1)];
-y_calc2_95 = X2 * b;
-err_test3(j) = immse(y_calc2_95,target2_95);
+x_sub_95 = subSet2_95(:,4);
+y_sub_95 = subSet2_95(:,1);
+w1_95 = (sum((x_sub_95-mean(x_sub_95)).*(y_sub_95-mean(y_sub_95))))./(sum((x_sub_95-mean(x_sub_95)).^2));
+w0_95 = mean(y_sub_95) - w1_95 * mean(x_sub_95);
+y_calc2_95 = w0_95 + w1_95 .* x_sub_95;
+err_test3(j) = immse(y_calc2_95,y_sub_95);
 err_train3(j) = immse(yn_c,yn);
 end
 mse3 = [err_train3 err_test3];
 
 subplot(1,3,2);
 diag = bar(mse3);
-diag(1).FaceColor = 'r';
-diag(2).FaceColor = 'g';
+diag(1).FaceColor = 'g';
+diag(2).FaceColor = 'r';
 ylabel('MSE');
-legend('MSE test set','MSE train set')
+legend('MSE train set','MSE test set')
 title(['MSE comparison between test and train set among ' num2str(len) ' random iterations'])
 
 
@@ -126,19 +126,20 @@ for h=1:len
 [subSet4_5,subSet4_95] = setSplit(mtcarsdata,percentage2);
 [y4,t4,w4] = multi_Dim(subSet4_5);
 target4_95 = subSet4_95(:,1);
-X4 = [ones(length(subSet4_95(:,2:end)),1) subSet4_95(:,2:end)];
-y_calc4_95 = X4 * w4;
-err_test4(j) = immse(y_calc4_95,target4_95);
-err_train4(j) = immse(y4,t4);
+x_95 =subSet4_95(:,2:end);
+w = (pinv(x_95'*x_95))*x_95'*target4_95;
+y_calc4_95 = x_95 * w;
+err_test4(h) = immse(y_calc4_95,target4_95);
+err_train4(h) = immse(y4,t4);
 end
 mse4 = [err_train4 err_test4];
 
 subplot(1,3,3);
 diag = bar(mse4);
-diag(1).FaceColor = 'r';
-diag(2).FaceColor = 'g';
+diag(1).FaceColor = 'g';
+diag(2).FaceColor = 'r';
 ylabel('MSE');
-legend('MSE test set','MSE train set')
+legend('MSE train set','MSE test set')
 title(['MSE comparison between test and train set among ' num2str(len) ' random iterations'])
 
 

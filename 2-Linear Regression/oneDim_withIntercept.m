@@ -12,9 +12,9 @@ function [x,y,y_c] = oneDim_withIntercept(mtcarsdata)
 x = mtcarsdata(:,4);
 y = mtcarsdata(:,1);
 
-X = [ones(length(x),1) x];
-b = X\y;
+w1 = (sum((x-mean(x)).*(y-mean(y))))./(sum((x-mean(x)).^2));
+w0 = mean(y) - w1 * mean(x);
 
-y_c = X * b;
+y_c = w0 + w1 .* x;
 end
 

@@ -10,7 +10,7 @@ end
 indexes = sort(randomSubset);
 subSet_2 = turkish_se_SP500vsMSCI;
 for a=1:length(indexes)
-subSet_2(a,:) = [];
+    subSet_2(a,:) = [];
 end
 end
 
