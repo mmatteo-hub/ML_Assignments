@@ -85,14 +85,16 @@ end
 mse1 = [err_train1 err_test1];
 
 figure
-subplot(3,1,1);
-diag = bar(mse1);
+subplot(3,2,1);
+diag = bar(err_train1);
 diag(1).FaceColor = 'g';
-diag(2).FaceColor = 'r';
 ylabel('MSE');
-legend('MSE train set','MSE test set')
-title(['MSE comparison between test and train set among ' num2str(len) ' random iterations'])
-
+legend('MSE train set')
+subplot(3,2,2);
+diag = bar(err_test1);
+diag(1).FaceColor = 'r';
+ylabel('MSE');
+legend('MSE test set')
 
 err_test3 = zeros(len,1);
 err_train3 = zeros(len,1);
@@ -110,13 +112,16 @@ err_train3(j) = immse(yn_c,yn);
 end
 mse3 = [err_train3 err_test3];
 
-subplot(3,1,2);
-diag = bar(mse3);
+subplot(3,2,3);
+diag = bar(err_train3);
 diag(1).FaceColor = 'g';
-diag(2).FaceColor = 'r';
 ylabel('MSE');
-legend('MSE train set','MSE test set')
-title(['MSE comparison between test and train set among ' num2str(len) ' random iterations'])
+legend('MSE train set')
+subplot(3,2,4);
+diag = bar(err_test3);
+diag(1).FaceColor = 'r';
+ylabel('MSE');
+legend('MSE test set')
 
 
 err_test4 = zeros(len,1);
@@ -132,16 +137,18 @@ y_calc4_95 = x_95 * w;
 err_test4(h) = immse(y_calc4_95,target4_95);
 err_train4(h) = immse(y4,t4);
 end
-mse4 = [err_train4 err_test4];
+mse4 = err_train4;
 
-subplot(3,1,3);
-diag = bar(mse4);
+subplot(3,2,5);
+diag = bar(err_train4);
 diag(1).FaceColor = 'g';
-diag(2).FaceColor = 'r';
 ylabel('MSE');
-legend('MSE train set','MSE test set')
-title(['MSE comparison between test and train set among ' num2str(len) ' random iterations'])
-
+legend('MSE train set')
+subplot(3,2,6);
+diag = bar(err_test4);
+diag(1).FaceColor = 'r';
+ylabel('MSE');
+legend('MSE test set')
 
 
 
