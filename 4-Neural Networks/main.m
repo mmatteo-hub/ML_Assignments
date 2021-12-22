@@ -5,7 +5,7 @@ addpath('./mnist');
 
 %% Task 2: Autoencoder
 
-[X, T] = loadMNIST(0,1:3);
+[X, T] = loadMNIST(0,[1,3,5]);
 
 % take 10% of the total
 rows = randperm(length(X(:,1)),floor(0.10*length(X(:,1))));
@@ -14,7 +14,7 @@ T_sub = T(rows,:);
 
 nh = 2;
 myAutoencoder = trainAutoencoder(X_sub',nh);
-[Xenc, Tenc] = loadMNIST(0,1:3);
+[Xenc, Tenc] = loadMNIST(0,[1,3,5]);
 
 rows = randperm(length(X(:,1)),floor(0.10*length(X(:,1))));
 X_sub_enc = Xenc(rows,:);

@@ -16,7 +16,7 @@ function plotcl(X, Xlbl, coord,psize)
       .5 0 .5; ...
       0 .5 .5 ...
     ];
-    pointstyles = 'o+*xsd^v><ph';
+    pointstyles = 'o+*xsd^v><ph'; 
     
     psz=2;
     if nargin<3
