@@ -1,16 +1,11 @@
-function [subSet,subSet_2] = setSplit(turkish_se_SP500vsMSCI,percentage)
-[R,C] = size(turkish_se_SP500vsMSCI);
-R_s = round(percentage * R);
-randomSubset = randperm(R,R_s);
-subSet = zeros(R_s,C);
+function [subSet,subSet_2] = setSplit(dataset,percentage)
+[R,~] = size(dataset);
+R_s = ceil(percentage * R);
+randomSubset = randperm(R);
 
-for i=1:length(randomSubset)
-    subSet(i,:) = turkish_se_SP500vsMSCI(randomSubset(i),:);
-end
-indexes = sort(randomSubset);
-subSet_2 = turkish_se_SP500vsMSCI;
-for a=1:length(indexes)
-    subSet_2(a,:) = [];
-end
+subSet = dataset(randomSubset(1:R_s),:);
+
+subSet_2 = dataset(randomSubset(R_s+1:end),:);
+
 end
 
