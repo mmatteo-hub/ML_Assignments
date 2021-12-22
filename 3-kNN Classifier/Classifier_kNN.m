@@ -8,7 +8,7 @@ addpath('./mnist');
 [X_test, T_test] = loadMNIST(1,0:9);
 
 %% Testing the classifier for differnt Ks
-K_array = [1,2,3,4,5,10,15,20,30,40,50];
+K_array = [1:5,9,16,25]; %[1,2,3,4,5,10,15,20,30,40,50];
 accuracy = zeros(10,length(K_array));
 
 for cl=1:10
